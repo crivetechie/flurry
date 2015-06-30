@@ -17,6 +17,7 @@
 package com.chronotrack.flurry.bootstrap
 
 import com.google.inject.{Scopes, Key, AbstractModule}
+import com.typesafe.scalalogging.LazyLogging
 import org.slf4j.LoggerFactory
 import com.google.inject.name.Names
 import ch.qos.logback.classic.{Level, LoggerContext}
@@ -24,7 +25,6 @@ import scala.collection.JavaConversions._
 import com.typesafe.config.{ConfigValueType, ConfigValue, ConfigFactory, Config}
 import com.chronotrack.flurry.Generator
 import com.chronotrack.flurry.worker.WorkerIdGenerator
-import com.typesafe.scalalogging.slf4j.LazyLogging
 
 /**
  * User: ilya

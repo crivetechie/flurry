@@ -17,7 +17,7 @@
 package com.chronotrack.flurry
 
 import com.chronotrack.flurry.worker.WorkerIdGenerator
-import com.typesafe.scalalogging.slf4j.LazyLogging
+import com.typesafe.scalalogging.LazyLogging
 
 /**
  * User: ilya

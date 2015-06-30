@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 ChronoTrack
+ * Copyright 2015 ChronoTrack
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -19,21 +19,21 @@ apply plugin: 'scala'
 apply plugin: 'idea'
 apply plugin: 'application'
 
-version = "0.2.0-beta"
+version = "0.3.0-beta"
 group = "com.chronotrack"
 
 mainClassName = "com.chronotrack.flurry.Runner"
 
-sourceCompatibility = '1.7'
-targetCompatibility = '1.7'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
 
 project.ext {
-  scalaVersion = "2.11.0"
+  scalaVersion = "2.11.7"
   scalaDependencyVersion = "2.11"
   akkaScalaVersion = "_2.11"
 
-  akkaVersion = "2.3.2"
+  akkaVersion = "2.3.9"
 }
 
 repositories {
@@ -45,8 +45,8 @@ repositories {
 }
 
 dependencies {
-  scalaTools "org.scala-lang:scala-compiler:${scalaVersion}"
-  scalaTools "org.scala-lang:scala-library:${scalaVersion}"
+//  scalaTools "org.scala-lang:scala-compiler:${scalaVersion}"
+//  scalaTools "org.scala-lang:scala-library:${scalaVersion}"
 
   compile "org.scala-lang:scala-library:${scalaVersion}"
   compile("org.scala-lang:scala-reflect:${scalaVersion}") { force = true }
@@ -56,14 +56,14 @@ dependencies {
   compile "com.typesafe.akka:akka-actor${akkaScalaVersion}:${akkaVersion}"
   compile "ch.qos.logback:logback-classic:1.0.13"
 //    compile "io.netty:netty-all:4.0.7.Final"
-  compile "org.apache.thrift:libthrift:0.9.1"
-  compile "com.facebook.nifty:nifty-core:0.12.0"
+  compile "org.apache.thrift:libthrift:0.9.2"
+  compile "com.facebook.nifty:nifty-core:0.15.1"
   compile("com.google.inject:guice:3.0") {
     force = true
   }
-  compile "com.typesafe.scala-logging:scala-logging-slf4j_${scalaDependencyVersion}:2.1.2"
+  compile "com.typesafe.scala-logging:scala-logging_${scalaDependencyVersion}:3.1.0"
 
-  testCompile "org.scalatest:scalatest_${scalaDependencyVersion}:2.1.6"
+  testCompile "org.scalatest:scalatest_${scalaDependencyVersion}:2.2.4"
 }
 
 test {
@@ -82,7 +82,7 @@ test {
 }
 
 
-task wrapper(type: Wrapper) { gradleVersion = "1.12" }
+task wrapper(type: Wrapper) { gradleVersion = "2.4" }
 
 tasks.withType(ScalaCompile) {
   scalaCompileOptions.useAnt = false

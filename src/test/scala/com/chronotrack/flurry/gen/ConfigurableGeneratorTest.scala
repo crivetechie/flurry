@@ -16,32 +16,26 @@
 
 package com.chronotrack.flurry.gen
 
-import org.scalatest.FunSuite
-import java.util.concurrent.{TimeUnit, ConcurrentHashMap, Executors, ExecutorService}
 import java.util.concurrent.atomic.AtomicInteger
-import scala.collection.JavaConversions._
-import com.typesafe.config.ConfigFactory
+import java.util.concurrent.{ConcurrentHashMap, ExecutorService, Executors, TimeUnit}
+
+import com.chronotrack.flurry.Generator
 import com.chronotrack.flurry.bootstrap.ServiceInjector
 import com.google.inject.Inject
-import com.chronotrack.flurry.Generator
+import org.scalatest.FunSuite
 
-class ConfigurableGeneratorTest extends FunSuite with ServiceInjector {
+import scala.collection.JavaConversions._
 
-  @Inject
-  val generator:Generator = generator
+class ConfigurableGeneratorTest @Inject()(val generator:Generator) extends FunSuite with ServiceInjector {
 
-//  private def newGenerator() =
-//    ConfigurableGenerator(1L, 1376587750000L, 13L, 12L)
 
   test("generate a few ids") {
-//    val generator = newGenerator()
     println(generator.getId)
     println(generator.getId)
     println(generator.getId)
   }
 
   test("generate multiple ids in thread and make sure no dups are generated") {
-//    val generator = newGenerator()
     val ids = new ConcurrentHashMap[Long, AtomicInteger]()
 
     val pool: ExecutorService = Executors.newFixedThreadPool(50)
@@ -55,12 +49,10 @@ class ConfigurableGeneratorTest extends FunSuite with ServiceInjector {
           }
         }
       }
-    tasks.foreach(pool.submit(_))
+    tasks.foreach(pool.submit)
     pool.awaitTermination(2, TimeUnit.SECONDS)
 
     ids.values().foreach(v => assert(v.get() === 1))
-
-//    println(ids)
 
   }
 
