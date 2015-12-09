@@ -50,7 +50,8 @@ trait Generator extends LazyLogging {
 
   logger.info(
     s"""Using ${this.getClass.getName}:
-      |\tBits used for time: ${64-workerIdBits-sequenceBits} allowing ${Math.pow(2, 64-workerIdBits-sequenceBits)/3.15569e10} years
+      |\tBits used for time: ${64-workerIdBits-sequenceBits} allowing ${Math.pow(2, 64-workerIdBits-sequenceBits)/3.15569e10} years unsigned Long
+      |\tBits used for time: ${64-workerIdBits-sequenceBits} allowing ${Math.pow(2, 64-workerIdBits-sequenceBits-1)/3.15569e10} years signed Long
       |\tBits used for worker: $workerIdBits allowing ${Math.pow(2, workerIdBits).toInt} workers
       |\tBits used for sequence: $sequenceBits allowing ${Math.pow(2, sequenceBits).toInt} ids per millisecond
     """.stripMargin)
